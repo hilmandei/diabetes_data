@@ -121,13 +121,16 @@ def plot_piechart(df, listcolumn):
     a = 0
     b = 1
     for i in range(8):
+        dfa = df[listcolumn[a]].value_counts().reset_index()
+        dfb = df[listcolumn[b]].value_counts().reset_index()
+
         plot = dbc.Row([
-            dcc.Graph(figure=px.pie(data_frame=df, names=listcolumn[a], template='seaborn', title=listcolumn[a]).update_layout(
+            dcc.Graph(figure=px.pie(data_frame=dfa, values=listcolumn[a], names='index',  template='seaborn', title=listcolumn[a] ).update_layout(
                     {"margin": dict(l=10, r=0, t=0, b=0, pad=0),
                     "showlegend": True,
                     "paper_bgcolor": "rgba(0,0,0,0)",
                     "plot_bgcolor": "rgba(0,0,0,0)",
-                    "font": {"color": "black" },
+                     "font": {"color": "black"},
                      "titlefont": {
                          "size": 8},
                     'title': {
@@ -138,8 +141,9 @@ def plot_piechart(df, listcolumn):
                          'yanchor': 'top'},
                     "autosize": False,
                     "width": 215, "height": 215}
-            ).update_traces(textposition='inside', texttemplate='%{percent:.0%f}', pull=[0.04, 0])),
-            dcc.Graph(figure=px.pie(data_frame=df, names=listcolumn[b], template='seaborn', title=listcolumn[b]).update_layout(
+            ).update_traces(textposition='inside', texttemplate='%{percent:.0%f}', marker=dict(line=dict(color='#000000', width=1)), pull=[0.05, 0])),
+
+            dcc.Graph(figure=px.pie(data_frame=dfb, values=listcolumn[b], names='index', template='seaborn', title=listcolumn[b]).update_layout(
                     {"margin": dict(l=0, r=0, t=0, b=0, pad=0),
                     "showlegend": True,
                     "paper_bgcolor": "rgba(0,0,0,0)",
@@ -154,7 +158,7 @@ def plot_piechart(df, listcolumn):
                          'xanchor': 'center',
                          'yanchor': 'top'},
                     "autosize": False, 'width': 215, "height": 215}
-                 ).update_traces(textposition='inside', texttemplate='%{percent:.0%f}', pull=[0.04, 0]))],
+                 ).update_traces(textposition='inside', texttemplate='%{percent:.0%f}', marker=dict(line=dict(color='#000000', width=1)),pull=[0.05, 0]))],
                        style={'height': '200px'}, no_gutters=True, justify="between")
 
         list_pie_chart.append(plot)
