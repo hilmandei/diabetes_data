@@ -33,6 +33,8 @@ df_perf = pd.read_csv('model_perf.csv')
 
 
 app = dash.Dash(__name__,
+                title='Diabetes_Dashboard',
+                update_title='Wait on Loading...,',
                 external_stylesheets=[dbc.themes.BOOTSTRAP],
                 meta_tags=[{'name': 'viewport',
                             'content': 'width=device-width, initial-scale=1.0'}])
@@ -418,7 +420,7 @@ tab_2_prediction = html.Div([
 
 app.layout = dbc.Container([
     dbc.Row([
-        dbc.Col(dcc.Tabs(id='tabs-example', value='tab-2', children=[
+        dbc.Col(dcc.Tabs(id='tabs-example', value='tab-1', children=[
                 dcc.Tab(label='Information', value='tab-1', style={'padding': '10pt', 'fontWeight': 'bold'}, className='pretty_container'),
                 dcc.Tab(label='Prediction', value='tab-2', style={'padding': '10pt', 'fontWeight': 'bold'}, className='pretty_container')],
                          style={'height': 50, 'font-size': '10pt', 'margin-left': '18px'}), width=1.7),
