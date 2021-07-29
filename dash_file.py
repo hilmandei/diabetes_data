@@ -31,7 +31,7 @@ df_heatmap.set_index('Unnamed: 0', inplace=True)
 df_roc = pd.read_csv('df_roc.csv')
 df_perf = pd.read_csv('model_perf.csv')
 
-# https://www.bootstrapcdn.com/bootswatch/
+
 app = dash.Dash(__name__,
                 external_stylesheets=[dbc.themes.BOOTSTRAP],
                 meta_tags=[{'name': 'viewport',
@@ -50,12 +50,13 @@ about_data = """This Data has 570 entries, there is no missing value, so we dont
                 You can download dataset below.
                 """
 
-model_text = "RandomForest Model gives us the best result, we will use it as our Classifier to make a prediction about Diabetes or Not"
+model_text = "RandomForest Model gives us the best result, we will use it as our Classifier to make a prediction about Diabetes or Not, check my notebook to see more detail. "
 link = "https://towardsdatascience.com/the-search-for-categorical-correlation-a1cf7f1888c9"
 link_download = "https://archive.ics.uci.edu/ml/datasets/Early+stage+diabetes+risk+prediction+dataset."
+link_github = "https://github.com/hilmandei/diabetes_data/blob/main/analysis_data.ipynb"
 
 first_card = dbc.Card(dbc.CardBody([html.P(relation_text, style={"font-size": "11pt"}), html.A('Clink Here', href=link, target="_blank")]))
-second_card = dbc.Card(dbc.CardBody(html.P(model_text, style={"font-size": "11pt"}), style={'padding': '5px', 'margin': '0px'}))
+second_card = dbc.Card(dbc.CardBody([html.P([model_text, html.A('Here', href=link_github, target="_blank")], style={"font-size": "11pt"})], style={'padding': '5px', 'margin': '0px'}))
 
 
 def plot_paretochart(df, listcolomn, gender):
