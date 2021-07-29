@@ -125,7 +125,8 @@ def plot_piechart(df, listcolumn):
         dfb = df[listcolumn[b]].value_counts().reset_index()
 
         plot = dbc.Row([
-            dcc.Graph(figure=px.pie(data_frame=dfa, values=listcolumn[a], names='index',  template='seaborn', title=listcolumn[a] ).update_layout(
+            dcc.Graph(figure=px.pie(data_frame=dfa, values=listcolumn[a], names='index',  template='seaborn', title=listcolumn[a],
+                      labels={'index': 'Cat.'}).update_layout(
                     {"margin": dict(l=10, r=0, t=0, b=0, pad=0),
                     "showlegend": True,
                     "paper_bgcolor": "rgba(0,0,0,0)",
@@ -143,7 +144,8 @@ def plot_piechart(df, listcolumn):
                     "width": 215, "height": 215}
             ).update_traces(textposition='inside', texttemplate='%{percent:.0%f}', marker=dict(line=dict(color='#000000', width=1)), pull=[0.05, 0])),
 
-            dcc.Graph(figure=px.pie(data_frame=dfb, values=listcolumn[b], names='index', template='seaborn', title=listcolumn[b]).update_layout(
+            dcc.Graph(figure=px.pie(data_frame=dfb, values=listcolumn[b], names='index', template='seaborn', title=listcolumn[b],
+                      labels={'index': 'Cat.'}).update_layout(
                     {"margin": dict(l=0, r=0, t=0, b=0, pad=0),
                     "showlegend": True,
                     "paper_bgcolor": "rgba(0,0,0,0)",
