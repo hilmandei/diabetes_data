@@ -522,7 +522,4 @@ def update_graph(gender_val, colname, colhist, modelname):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True, port=8100)
-
-    
-# https://youtu.be/0mfIK8zxUds
+    app.run_server(debug=True,)
