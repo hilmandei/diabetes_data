@@ -34,8 +34,7 @@ app = dash.Dash(__name__,
                 title='Diabetes_Dashboard',
                 update_title='Wait on Loading...,',
                 external_stylesheets=[dbc.themes.BOOTSTRAP],
-                meta_tags=[{'name': 'viewport',
-                            'content': 'width=device-width, initial-scale=1.0'}])
+                meta_tags=[{'name': 'viewport', 'content': 'width=device-width, initial-scale=1.0'}])
 
 server = app.server
 app.config['suppress_callback_exceptions'] = True
@@ -206,7 +205,7 @@ def plot_piechart(df, listcolumn):
 
 def plot_dist(df, colname, condition):
     alpha = 0.05
-    if colname == None:
+    if colname is None:
         colname = 'Gender'
 
     unique_val = df[colname].unique()
@@ -298,10 +297,10 @@ def plot_hist(df, columnname):
                            'x': 0.5,
                            'xanchor': 'center',
                            'yanchor': 'top'},
-                       "autosize": True, "width": 310, "height": 310
-                       })
+                       "autosize": True, "width": 310, "height": 310})
     fig.update_xaxes(title=None)
     fig.update_yaxes(title=None)
+
     return fig
 
 
@@ -546,8 +545,7 @@ def render_content(tab):
 @app.callback(
     Output("popover", "is_open"),
     [Input("popover-bottom-target", "n_clicks")],
-    [State("popover", "is_open")],
-)
+    [State("popover", "is_open")])
 def toggle_popover(n, is_open):
     if n:
         return not is_open
@@ -565,7 +563,6 @@ def chi_test_update(nclick, ft, ft2):
     else:
         text_res, pval = create_chi_sq(df, ft, ft2)
         pval_text = f'P-value : {round(pval,3)}'
-        print( pval)
 
     return text_res, pval_text
 
